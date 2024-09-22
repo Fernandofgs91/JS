@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="css/estilos.css">
 
     <script>
-        nome = prompt("Qual é o seu primeiro nome?");
-        sobrenome = prompt("Qual é o seu sobrenome?");
-        alert(`${nome} ${sobrenome}`);
+       // Função para exibir o prompt após 3 segundos
+        setTimeout(function () {
+            let nome = prompt("Qual é o seu primeiro nome?");
+            let sobrenome = prompt("Qual é o seu sobrenome?");
+            alert(`${nome} ${sobrenome}`);
+        }, 1000); // 1000 milissegundos = 1 segundos
     </script>
 </head>
 
