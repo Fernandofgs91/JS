@@ -14,11 +14,12 @@ let idade = prompt("Qual é a sua idade?");
 // Verificar se a idade é maior ou igual a 18
 if (idade >= 18) {
     alert(`${nome}, você já POSSUI idade para tirar carteira`);
-} else {
-    // Calcular quantos anos faltam para completar 18
-    let anosFaltando = 18 - idade;
-    alert(`${nome}, você ainda NÃO POSSUI idade para tirar carteira, ainda falta(m) ${anosFaltando} ano(s)`);
-}
+    return;  // Encerra o script se a idade for maior ou igual a 18
+} 
+
+// Calcular quantos anos faltam para completar 18
+let anosFaltando = 18 - idade;
+alert(`${nome}, você ainda NÃO POSSUI idade para tirar carteira, ainda falta(m) ${anosFaltando} ano(s)`);
     </script>
 </head>
 
