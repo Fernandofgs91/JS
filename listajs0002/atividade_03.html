@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <style>
+        
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <title>Lista 02</title>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li class="dropdown">
+                <a href="index.html">Atividade 01</a>
+                <ul class="dropdown-content">
+                    <li><a href="exer_a.html">Exercício A</a></li>
+                    <li><a href="exer_b.html">Exercício B</a></li>
+                </ul>
+            </li>
+            <li><a href="atividade_02.html">Atividade 02</a></li>
+            <li><a href="atividade_03.html">Atividade 03</a></li>
+            <li><a href="atividade_04.html">Atividade 04</a></li>
+            
+        </ul>
+    </nav>
+<br>
+    <div class="container">
+        <table id="disciplinesTable">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Disciplina</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const codigos = ["P2", "AP", "POO1", "FBD", "JSB"];
+        const disciplinas = [
+            "Projeto Sistema Web MVC e SQL",
+            "Algoritmos e Programação",
+            "Programação Orientada a Objetos 1",
+            "Fundamentos de Banco de Dados",
+            "JavaScript Básico"
+        ];
+
+        const tableBody = document.querySelector("#disciplinesTable tbody");
+
+        // Usando for...in para percorrer os índices dos arrays
+        for (let index in codigos) {
+            const row = document.createElement("tr");
+
+            const codigoCell = document.createElement("td");
+            codigoCell.textContent = codigos[index];
+            row.appendChild(codigoCell);
+
+            const disciplinaCell = document.createElement("td");
+            disciplinaCell.textContent = disciplinas[index];
+            row.appendChild(disciplinaCell);
+
+            tableBody.appendChild(row);
+        }
+    </script>
+    
+</body>
+</html>

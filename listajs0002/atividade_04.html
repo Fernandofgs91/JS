@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+            
+        .bus-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .bus {
+            width: 300px;
+            height: 500px;
+            background-color: #e6e6e6;
+            border: 3px solid #000;
+            border-radius: 20px;
+            position: relative;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .window {
+            width: 60%;
+            height: 50px;
+            background-color: black;
+            margin: 0 auto 10px auto;
+            border-radius: 10px;
+        }
+
+        .seats-container {
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .seats {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 45%;
+        }
+
+        .seat {
+            width: 100%;
+            height: 40px;
+            border: 2px solid #000;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .seat.left {
+            background-color: lightblue;
+        }
+
+        .seat.right {
+            background-color: lightgreen;
+        }
+
+        /* Rodas do ônibus */
+        .wheel {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            border-radius: 50%;
+            bottom: -25px;
+        }
+
+        .wheel.left {
+            left: 10px;
+        }
+
+        .wheel.right {
+            right: 10px;
+        }
+    </style>
+    <title>Lista 02</title>
+</head>
+<body>
+
+    <!-- Menu de navegação -->
+    <nav>
+        <ul>
+            <li class="dropdown">
+                <a href="index.html">Atividade 01</a>
+                <ul class="dropdown-content">
+                    <li><a href="exer_a.html">Exercício A</a></li>
+                    <li><a href="exer_b.html">Exercício B</a></li>
+                </ul>
+            </li>
+            <li><a href="atividade_02.html">Atividade 02</a></li>
+            <li><a href="atividade_03.html">Atividade 03</a></li>
+            <li><a href="atividade_04.html">Atividade 04</a></li>
+         
+        </ul>
+    </nav>
+<br>
+    <!-- Conteúdo principal da página -->
+    <div class="content">
+        <h1>Arranjo de Assentos no Ônibus</h1>
+        <div class="bus-container">
+            <div class="bus">
+                <div class="window"></div> <!-- Janela da frente -->
+                <div class="seats-container">
+                    <div id="left-seats" class="seats"></div>
+                    <div id="right-seats" class="seats"></div>
+                </div>
+                <div class="wheel left"></div> <!-- Roda esquerda -->
+                <div class="wheel right"></div> <!-- Roda direita -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const passengers = [
+            { name: "Tião", gender: "M" },
+            { name: "Jane", gender: "F" },
+            { name: "Leo", gender: "M" },
+            { name: "Ana", gender: "F" },
+            { name: "Rose", gender: "F" },
+            { name: "Juca", gender: "M" },
+            { name: "Perl", gender: "F" },
+            { name: "Bea", gender: "F" }
+        ];
+
+        // Separar passageiros por gênero e ordenar alfabeticamente
+        const women = passengers.filter(p => p.gender === 'F').sort((a, b) => a.name.localeCompare(b.name));
+        const men = passengers.filter(p => p.gender === 'M').sort((a, b) => a.name.localeCompare(b.name));
+
+        // Colocar os passageiros nos assentos
+        const leftSeatsContainer = document.getElementById('left-seats');
+        const rightSeatsContainer = document.getElementById('right-seats');
+
+        women.forEach(woman => {
+            const seat = document.createElement('div');
+            seat.className = 'seat left';
+            seat.textContent = woman.name;
+            leftSeatsContainer.appendChild(seat);
+        });
+
+        men.forEach(man => {
+            const seat = document.createElement('div');
+            seat.className = 'seat right';
+            seat.textContent = man.name;
+            rightSeatsContainer.appendChild(seat);
+        });
+    </script>
+</body>
+</html>
