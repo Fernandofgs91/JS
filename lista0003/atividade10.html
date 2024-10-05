@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/ESTILOS.CSS">
+    <title>Sorteio de Cartas</title>
+
+    <style>
+        button {
+            background-color: #3498db; /* Azul harmônico */
+            color: white;
+            border: none; /* Remove a borda padrão */
+            border-radius: 25px; /* Bordas arredondadas */
+            padding: 10px 20px; /* Espaçamento interno */
+            font-size: 16px; /* Tamanho da fonte */
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave nas cores */
+            margin: 20px 0; /* Adiciona espaçamento de 20px acima e abaixo */
+        }
+
+        button:hover {
+            background-color: orangered; /* Cor de fundo ao passar o mouse */
+            color: wheat; /* Cor do texto ao passar o mouse */
+        }
+
+        button:focus {
+            outline: 2px solid #2c3e50; /* Adiciona um contorno ao focar */
+            outline-offset: 2px; /* Espaçamento entre o contorno e o botão */
+        }
+
+        img {
+            width: 100px; /* Largura da imagem */
+            height: 150px; /* Altura da imagem */
+            display: none; /* Inicialmente, todas as imagens estão ocultas */
+            opacity: 0; /* Inicialmente invisível */
+            transform: scale(0.8) rotate(-20deg); /* Inicia com escala e rotação */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Transições suaves */
+        }
+
+        img.revelada {
+            display: block; /* Mostra a imagem */
+            opacity: 1; /* Torna a imagem visível */
+            transform: scale(1) rotate(0deg); /* Redefine escala e rotação */
+        }
+    </style>
+    <script>
+        function sortearCarta() {
+            var numero = Math.floor(Math.random() * 27) + 1;
+            var imagens = document.querySelectorAll("img");
+            imagens.forEach(function(imagem) {
+                imagem.classList.remove("revelada"); // Remove a classe revelada de todas as imagens
+                imagem.style.display = "none"; // Oculta todas as imagens
+            });
+            var cartaRevelada = document.getElementById("carta" + numero);
+            cartaRevelada.style.display = "block"; // Exibe a imagem sorteada
+            setTimeout(() => {
+                cartaRevelada.classList.add("revelada"); // Adiciona a classe revelada após 10ms
+            }, 10);
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Atividade 1</a></li>
+                <li><a href="atividade2.html">Atividade 2</a></li>
+                <li><a href="atividade3.html">Atividade 3</a></li>
+                <li><a href="atividade4.html">Atividade 4</a></li>
+                <li><a href="atividade5.html">Atividade 5</a></li>
+                <li><a href="atividade6.html">Atividade 6</a></li>
+                <li><a href="atividade7.html">Atividade 7</a></li>
+                <li><a href="atividade8.html">Atividade 8</a></li>
+                <li><a href="atividade9.html">Atividade 9</a></li>
+                <li><a href="atividade10.html">Atividade 10</a></li>
+                <li><a href="atividade11.html">Atividade 11</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <button onclick="sortearCarta()">Sorteie uma carta!</button>
+        <div id="resultado">
+            <img id="carta1" src="img/carta1.png" alt="Carta 1">
+            <img id="carta2" src="img/carta2.png" alt="Carta 2">
+            <img id="carta3" src="img/carta3.png" alt="Carta 3">
+            <img id="carta4" src="img/carta4.png" alt="Carta 4">
+            <img id="carta5" src="img/carta5.png" alt="Carta 5">
+            <img id="carta6" src="img/carta6.png" alt="Carta 6">
+            <img id="carta7" src="img/carta7.png" alt="Carta 7">
+            <img id="carta8" src="img/carta8.png" alt="Carta 8">
+            <img id="carta9" src="img/carta9.png" alt="Carta 9">
+            <img id="carta10" src="img/carta10.png" alt="Carta 10">
+            <img id="carta11" src="img/carta11.png" alt="Carta 11">
+            <img id="carta12" src="img/carta12.png" alt="Carta 12">
+            <img id="carta13" src="img/carta13.png" alt="Carta 13">
+            <img id="carta14" src="img/carta14.png" alt="Carta 14">
+            <img id="carta15" src="img/carta15.png" alt="Carta 15">
+            <img id="carta16" src="img/carta16.png" alt="Carta 16">
+            <img id="carta17" src="img/carta17.png" alt="Carta 17">
+            <img id="carta18" src="img/carta18.png" alt="Carta 18">
+            <img id="carta19" src="img/carta19.png" alt="Carta 19">
+            <img id="carta20" src="img/carta20.png" alt="Carta 20">
+            <img id="carta21" src="img/carta21.png" alt="Carta 21">
+            <img id="carta22" src="img/carta22.png" alt="Carta 22">
+            <img id="carta23" src="img/carta23.png" alt="Carta 23">
+            <img id="carta24" src="img/carta24.png" alt="Carta 24">
+            <img id="carta25" src="img/carta25.png" alt="Carta 25">
+            <img id="carta26" src="img/carta26.png" alt="Carta 26">
+            <img id="carta27" src="img/carta27.png" alt="Carta 27">
+        </div>
+    </main>
+</body>
+
+</html>
