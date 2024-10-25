@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Cor de fundo suave */
+}
+nav {
+    background-color: #ff6347; /* Tomate */
+    padding: 15px;
+    border-radius: 8px;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    display: inline;
+    margin-right: 20px;
+}
+a {
+    text-decoration: none;
+    color: #5b66ce4b; /* Branco */
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* Transição suave */
+}
+a:hover {
+    background-color: #ff4500; /* Laranja avermelhado */
+    color: #5b66ce4b; /* Mantém o texto branco */
+}
