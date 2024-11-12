@@ -1,0 +1,67 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral do body */
+body {
+    font-family: Arial, sans-serif;
+
+    height: 100vh;
+}
+
+/* Menu com 100% de largura da página e fixado no topo */
+.menu {
+    display: flex;
+    position: fixed; /* Fixar o menu no topo */
+    top: 0;
+    left: 0;
+    width: 100%; /* 100% da largura da página */
+    border-bottom: 2px solid #333;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Certifica que o menu fique acima de outros elementos */
+}
+
+/* Links do menu */
+.menu a {
+    flex: 1; /* Cada link ocupa a mesma proporção */
+    text-align: center; /* Centraliza o texto no link */
+    padding: 15px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    background-color: #4CAF50; /* Cor de fundo verde */
+    transition: background-color 0.3s;
+    border-right: 1px solid #333; /* Separador entre os links */
+}
+
+/* Remove o separador do último link */
+.menu a:last-child {
+    border-right: none;
+}
+
+/* Efeito de hover */
+.menu a:hover {
+    background-color: #45a049; /* Cor um pouco mais escura ao passar o mouse */
+}
+
+/* Primeira opção com cor personalizada */
+.menu a:first-child {
+    background-color: #3498db; /* Cor azul */
+}
+
+.menu a:first-child:hover {
+    background-color: #2980b9; /* Azul mais escuro no hover */
+}
+
+/* Segunda opção com cor personalizada */
+.menu a:last-child {
+    background-color: #e74c3c; /* Cor vermelha */
+}
+
+.menu a:last-child:hover {
+    background-color: #c0392b; /* Vermelho mais escuro no hover */
+}

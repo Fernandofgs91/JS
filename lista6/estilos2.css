@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.candidato {
+    text-align: center;
+    border: 2px solid black;
+    background-color: lightgreen; /* Cor padrão */
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+/* Efeito de hover */
+.candidato:hover {
+    background-color: lightblue; /* Azul claro ao passar o mouse */
+}
+
+/* Candidato com mais votos: cor azul-escuro */
+.mais-votado {
+    background-color: darkblue !important; /* Azul escuro */
+    color: white; /* Texto branco para contraste */
+}
+
+.candidato img {
+    width: 150px;
+    height: 200px;
+    cursor: pointer;
+}
+
+h2 {
+    color: red;
+}
+
+
+span {
+
+    color: red;
+}
+
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.candidato {
+    padding: 10px;
+    margin: 5px 0; /* Ajustando a margem superior e inferior */
+    background-color: lightgreen;
+}
