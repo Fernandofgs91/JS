@@ -18,18 +18,24 @@ var animationMap = {
 };
 
 // Função para atualizar a imagem, mensagem e animações do personagem
-function changeBoy(personagemKey) {
+function changeBoy(personagemKey, nome) {
     // Atualiza a imagem e a mensagem com base no personagem
     var personagemAtual = personagem[personagemKey];
     boy.src = personagemAtual.img;
-    textBoy.innerHTML = personagemAtual.msg;
     
+    // Se for o personagem alegre, modifica a mensagem para incluir o nome
+    if (personagemKey === "alegre" && nome) {
+        textBoy.innerHTML = nome + personagemAtual.msg;
+    } else {
+        textBoy.innerHTML = personagemAtual.msg;
+    }
+
     // Remove todas as animações aplicadas anteriormente
     boy.classList.remove("move-right", "img-tremer");
-    
+
     // Obtém as animações a serem aplicadas ao personagem atual
     var animations = animationMap[personagemKey] || [];
-    
+
     // Adiciona as animações relevantes ao elemento
     animations.forEach(function(animationClass) {
         boy.classList.add(animationClass);
@@ -38,21 +44,20 @@ function changeBoy(personagemKey) {
 
 // Evento quando o mouse entra na área da imagem (estado "assustado")
 boy.addEventListener("mouseenter", function () {
-    changeBoy("assustado");  // Passa a chave "assustado" em vez do objeto
+    changeBoy("assustado");
 });
 
 // Evento quando o mouse sai da área da imagem (estado "pensativo")
 boy.addEventListener("mouseout", function () {
-    changeBoy("pensativo");  // Passa a chave "pensativo" em vez do objeto
+    changeBoy("pensativo");
 });
 
 // Evento de clique (verifica o nome e altera o estado para "alegre" ou "nervoso")
 boy.addEventListener("click", function () {
     var nome = prompt("Qual é o seu nome?");
     if (!nome) {
-        changeBoy("nervoso");  // Passa a chave "nervoso" se não tiver nome
+        changeBoy("nervoso");
     } else {
-        personagem.alegre.msg = nome + personagem.alegre.msg;  // Adiciona o nome na mensagem "alegre"
-        changeBoy("alegre");   // Passa a chave "alegre" se o nome for informado
+        changeBoy("alegre", nome);  // Passa o nome junto com o estado "alegre"
     }
 });
