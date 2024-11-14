@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .boxBoy {
+            width: 800px;
+            text-align: center;
+        }
+
+        /* Estilo da imagem */
+        .img-tremer {
+            animation: tremer-rotacao 0.1s infinite;
+        }
+
+        @keyframes tremer-rotacao {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(3px, -3px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-3px, 3px) rotate(-1deg);
+            }
+
+            75% {
+                transform: translate(3px, 3px) rotate(1deg);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        /* Define a animação de mover para a direita */
+        @keyframes moveRight {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(200px);
+            }
+        }
+
+        /* Aplica a animação ao elemento que deve se mover */
+        .move-right {
+            animation: moveRight 1s ease-in-out infinite alternate;
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="menu">
+        <a href="index.html">Página I</a>
+        <a href="pagina2.html">Página II</a>
+    </nav>
+    <div class="boxBoy">
+        <img id="boy" src="img/pensativo.png" alt="Personagem pensativo">
+        <p id="textBoy">zzzzzzz!</p>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

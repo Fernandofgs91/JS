@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Votos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Resetando margens e paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo geral do body */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* Contêiner dos candidatos */
+        .container {
+            display: flex;
+            /* Habilita o layout flexível */
+            flex-direction: row;
+            /* Define a direção dos itens no eixo horizontal */
+            gap: 5px;
+            /* Define o espaçamento entre os itens flexíveis */
+            justify-content: center;
+            /* Alinha os itens horizontalmente ao centro */
+        }
+
+
+
+        /* Estilo dos candidatos */
+        .candidato {
+            text-align: center;
+            border: 2px solid black;
+            background-color: lightgreen;
+            /* Cor padrão */
+            margin: 10px;
+            padding: 20px;
+            margin: 5px 5px;
+            /* Ajusta a margem superior e inferior */
+            transition: background-color 0.3s;
+        }
+
+        /* Efeito de hover */
+        .candidato:hover {
+            background-color: lightblue;
+            /* Azul claro ao passar o mouse */
+        }
+
+        /* Candidato com mais votos: cor azul-escuro */
+        .candidato.mais-votado {
+            background-color: darkblue !important;
+            /* Azul escuro */
+            color: white;
+            /* Texto branco para contraste */
+        }
+
+        /* Manter o efeito de hover mesmo para o candidato mais votado */
+        .candidato.mais-votado:hover {
+            background-color: lightblue !important;
+            /* Azul claro no hover */
+        }
+
+        /* Estilo para as imagens dos candidatos */
+        .candidato img {
+            width: 150px;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        /* Estilos adicionais para títulos */
+        h2,
+        h3 {
+            color: red;
+            margin: 0;
+            padding: 0;
+        }
+
+        h3 {
+            text-align: center;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        /* Estilo para spans */
+        span {
+            color: red;
+            font-weight: bolder;
+            font-size: 23px;
+        }
+
+        p{
+    font-size: large;
+    font-weight: bold;
+    margin: 10px;
+}
+
+h2{
+    color: darkred;
+    text-align: center;
+    margin: 10px;
+}
+
+h3{
+    text-align: center;
+    justify-content: center;
+    margin: 10px;
+}
+    </style>
+</head>
+
+<body>
+    <nav class="menu">
+        <a href="index.html">Página I</a>
+        <a href="pagina2.html">Página II</a>
+    </nav>
+    <script src="js/script2.js"></script>
+    <div class="container">
+        <div>
+            <h3>CANDIDATO 1</h3>
+            <div class="candidato" id="candidato1">
+                <p>Mickey</p>
+                <img src="img/Mickey.jpg" alt="Mickey" onclick="votar(1)">
+                <p>Número de votos: <span id="votos1">0</span></p>
+            </div>
+        </div>
+        <div>
+            <h3>CANDIDATO 2</h3>
+            <div class="candidato" id="candidato2">
+
+                <p>Minnie</p>
+                <img src="img/minnie.jpg" alt="Minnie" onclick="votar(2)">
+                <p>Número de votos: <span id="votos2">0</span></p>
+            </div>
+        </div>
+        <div>
+            <h3>CANDIDATO 3</h3>
+            <div class="candidato" id="candidato3">
+
+                <p>Pluto</p>
+                <img src="img/pluto.jpg" alt="Pluto" onclick="votar(3)">
+                <p>Número de votos: <span id="votos3">0</span></p>
+            </div>
+        </div>
+        <div>
+            <h3>CANDIDATO 4</h3>
+            <div class="candidato" id="candidato4">
+
+                <p>Pateta</p>
+                <img src="img/pateta.jpg" alt="Pateta" onclick="votar(4)">
+                <p>Número de votos: <span id="votos4">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
