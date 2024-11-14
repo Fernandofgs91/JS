@@ -23,7 +23,7 @@
 
         /* Estilo da imagem */
         .img-tremer {
-            animation: tremer-rotacao 4.0ms infinite;
+            animation: tremer-rotacao 0.1s infinite;
         }
 
         @keyframes tremer-rotacao {
@@ -48,23 +48,21 @@
             }
         }
 
-
-
         /* Define a animação de mover para a direita */
-@keyframes moveRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(200px);
-  }
-}
+        @keyframes moveRight {
+            from {
+                transform: translateX(0);
+            }
 
-/* Aplica a animação ao elemento que deve se mover */
-.move-right {
-  animation: moveRight 1.0s ease-in-out infinite alternate;
-}
+            to {
+                transform: translateX(200px);
+            }
+        }
 
+        /* Aplica a animação ao elemento que deve se mover */
+        .move-right {
+            animation: moveRight 1s ease-in-out infinite alternate;
+        }
     </style>
     <link rel="stylesheet" href="css/style.css">
 </head>
