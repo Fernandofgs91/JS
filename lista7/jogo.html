@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff; /* Fundo branco */
+        }
+
+        body {
+            flex-direction: column; /* Elementos em coluna */
+            text-align: center; /* Centraliza texto */
+            font-family: Arial, sans-serif; /* Fonte padrão */
+        }
+
+        .container {
+            margin-bottom: 20px; /* Espaço entre a parte de texto e a imagem */
+        }
+
+        .boxBoy {
+            width: 800px;
+            text-align: center;
+        }
+
+        /* Estilo da imagem */
+        .img-tremer {
+            animation: tremer-rotacao 0.1s infinite;
+        }
+
+        @keyframes tremer-rotacao {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(3px, -3px) rotate(1deg);
+            }
+            50% {
+                transform: translate(-3px, 3px) rotate(-1deg);
+            }
+            75% {
+                transform: translate(3px, 3px) rotate(1deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        /* Define a animação de mover para a direita */
+        @keyframes moveRight {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(200px);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            75% {
+                transform: translateX(-200px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Aplica a animação ao elemento que deve se mover */
+        .move-right {
+            animation: moveRight 4s ease-in-out infinite;
+            will-change: transform;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo ao Jogo!</h1>
+        <button id="sairBtn">Sair</button>
+    </div>
+
+    <div class="boxBoy">
+        <img id="boy" src="img/pensativo.png" alt="Personagem pensativo">
+        <p id="textBoy">zzzzzzz!</p>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('sairBtn').addEventListener('click', function () {
+            const sair = confirm('Deseja realmente sair do jogo?');
+            if (sair) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

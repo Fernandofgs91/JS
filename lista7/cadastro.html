@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro</h1>
+        <form id="cadastroForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome" required>
+            
+            <label for="usuario">Email:</label>
+            <input type="email" id="usuario" placeholder="Digite seu Email" required>
+            
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" placeholder="Digite sua senha (mínimo 5 caracteres)" required>
+            
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="cadastroError" class="error-message"></p>
+        <p><a href="index.html">Já tem uma conta? Faça login</a></p>
+    </div>
+
+    <script>
+        document.getElementById('cadastroForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const usuario = document.getElementById('usuario').value.trim();
+            const senha = document.getElementById('senha').value.trim();
+            const cadastroError = document.getElementById('cadastroError');
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+            // Limpa mensagem de erro ao iniciar uma nova tentativa
+            cadastroError.textContent = '';
+
+            // Validações
+            if (!nome || !usuario || !senha) {
+                cadastroError.textContent = 'Todos os campos são obrigatórios!';
+                return;
+            }
+
+            if (senha.length < 5) {
+                cadastroError.textContent = 'A senha deve ter pelo menos 5 caracteres.';
+                return;
+            }
+
+            if (usuarios.some(u => u.usuario.toLowerCase() === usuario.toLowerCase())) {
+                cadastroError.textContent = 'Usuário já existente. Tente outro.';
+                return;
+            }
+
+            // Adiciona novo usuário
+            usuarios.push({ nome, usuario, senha });
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+            alert('Cadastro realizado com sucesso! Faça login para continuar.');
+            window.location.href = 'index.html'; // Redireciona para login
+        });
+    </script>
+</body>
+</html>
