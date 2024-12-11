@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> <!-- Mudei o idioma para português -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>2</title> <!-- Título mais descritivo -->
+
+
+</head>
+
+<body>
+    <h1>Lista 4</h1> <!-- Título da página -->
+    <h1>Menu de 1 a 8.</h1>
+    <ul>
+        <li><a href="index.html">1</a></li>
+        <li><a href="2.html">2</a></li>
+        <li><a href="3.html">3</a></li>
+        <li><a href="4.html">4</a></li>
+        <li><a href="5.html">5</a></li>
+        <li><a href="6.html">6</a></li>
+        <li><a href="7.html">7</a></li>
+        <li><a href="8.html">8</a></li>
+    </ul>
+    <script>
+        // Função para gerar uma senha forte
+        function gerarSenhaForte(tamanho) {
+            const caracteres = [
+                'abcdefghijklmnopqrstuvwxyz', // Letras minúsculas
+                'ABCDEFGHIJKLMNOPQRSTUVWXYZ', // Letras maiúsculas
+                '0123456789'                  // Números
+            ];
+
+            let senha = '';
+
+            for (let i = 0; i < tamanho; i++) {
+                // Seleciona um conjunto de caracteres aleatoriamente
+                const conjuntoAleatorio = caracteres[Math.floor(Math.random() * caracteres.length)];
+                // Seleciona um caractere aleatório do conjunto escolhido
+                const indiceAleatorio = Math.floor(Math.random() * conjuntoAleatorio.length);
+                senha += conjuntoAleatorio[indiceAleatorio];
+            }
+
+            return senha;
+        }
+
+        // Função para exibir a senha no corpo da página
+        function exibirSenha() {
+            const tamanho = 8; // Define o tamanho da senha
+            const senha = gerarSenhaForte(tamanho);
+            document.getElementById('senhaGerada').textContent = senha;
+        }
+    </script>
+    <h1>Gerador de Senha Forte</h1>
+    <p>Senha gerada: <span id="senhaGerada">_</span></p>
+    <button onclick="exibirSenha()">Gerar Nova Senha</button>
+</body>
+
+</html>

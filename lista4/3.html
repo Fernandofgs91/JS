@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> <!-- Mudei o idioma para português -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>3</title> <!-- Título mais descritivo -->
+
+
+</head>
+<body>
+    <h1>Lista 4</h1> <!-- Título da página -->
+    <h1>Menu de 1 a 8.</h1>
+    <ul>
+        <li><a href="index.html">1</a></li>
+        <li><a href="2.html">2</a></li>
+        <li><a href="3.html">3</a></li>
+        <li><a href="4.html">4</a></li>
+        <li><a href="5.html">5</a></li>
+        <li><a href="6.html">6</a></li>
+        <li><a href="7.html">7</a></li>
+        <li><a href="8.html">8</a></li>
+    </ul>
+    <script>
+        // Função para gerar um número aleatório
+        function gerarNumeroAleatorio() {
+            const numeros = '0123456789';
+            const indiceAleatorio = Math.floor(Math.random() * numeros.length);
+            return numeros[indiceAleatorio];
+        }
+
+        // Função para exibir o número no corpo da página
+        function exibirNumero() {
+            const numero = gerarNumeroAleatorio();
+            document.getElementById('numeroAleatorio').textContent = numero;
+        }
+    </script>
+    <h1>Gerar um Números Aleatórios</h1>
+    <p>Número gerado: <span id="numeroAleatorio">_</span></p>
+    <button onclick="exibirNumero()">Gerar Novo Número</button>
+</body>
+</html>

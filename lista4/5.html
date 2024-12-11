@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> <!-- Mudei o idioma para português -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>1</title> <!-- Título mais descritivo -->
+
+
+</head>
+<body>
+    <h1>Lista 4</h1> <!-- Título da página -->
+    <h1>Menu de 1 a 8.</h1>
+    <ul>
+        <li><a href="index.html">1</a></li>
+        <li><a href="2.html">2</a></li>
+        <li><a href="3.html">3</a></li>
+        <li><a href="4.html">4</a></li>
+        <li><a href="5.html">5</a></li>
+        <li><a href="6.html">6</a></li>
+        <li><a href="7.html">7</a></li>
+        <li><a href="8.html">8</a></li>
+    </ul>
+    <script>
+        // Função para gerar letras maiúsculas aleatórias
+        function gerarLetrasMinusculasAleatorias(numero) {
+            const letrasMinusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let letrasAleatorias = '';
+
+            for (let i = 0; i < numero; i++) {
+                const indiceAleatorio = Math.floor(Math.random() * letrasMinusculas.length);
+                letrasAleatorias += letrasMinusculas[indiceAleatorio];
+            }
+
+            return letrasAleatorias;
+        }
+
+        // Função para exibir as letras no corpo da página
+        function exibirLetras() {
+            const quantidade = 4; // Define o número de letras a serem geradas
+            const letras = gerarLetrasMinusculasAleatorias(quantidade);
+            document.getElementById('letrasAleatorias').textContent = letras;
+        }
+    </script>
+
+<h1>Gerar 4 Letras Aleatórias (Maiúsculas)</h1>
+<p>Letras geradas: <span id="letrasAleatorias">_</span></p>
+<button onclick="exibirLetras()">Gerar Letras</button>
+</body>
+</html>
