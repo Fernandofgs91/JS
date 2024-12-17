@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opções de Veículos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: black;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+        }
+
+        .vehicle {
+            display: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        img {
+            width: 300px;
+            border-radius: 8px;
+        }
+
+        .details {
+            text-align: left;
+        }
+
+        .details p {
+            margin: 5px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="welcome-text">Carregando...</h1>
+    <div class="slideshow-container" id="slideshow-container"></div>
+
+    <script>
+        const vehiclesData = {
+            shopping: [
+                { img: "img/civic.jpg", fabricante: "Honda", nome: "Civic", potencia: "150 cv", garantia: "3 anos", consumo: "9,7 km/l" },
+                { img: "img/corolla.jpg", fabricante: "Toyota", nome: "Corolla", potencia: "144 cv", garantia: "3 anos", consumo: "10,6 km/l" }
+            ],
+            natureza: [
+                { img: "img/troller.jpg", fabricante: "Ford", nome: "Troller", potencia: "200 cv", garantia: "3 anos", consumo: "7,7 km/l" },
+                { img: "img/wrangler.jpg", fabricante: "Jeep", nome: "Wrangler", potencia: "199 cv", garantia: "2 anos", consumo: "3,1 km/l" }
+            ]
+        };
+
+        const createVehicleElement = (vehicle) => {
+            const vehicleDiv = document.createElement('div');
+            vehicleDiv.classList.add('vehicle');
+            vehicleDiv.innerHTML = `
+                <img src="${vehicle.img}" alt="Imagem do veículo ${vehicle.nome}" onerror="this.onerror=null; this.src='img/default.jpg';">
+                <div class="details">
+                    <h3 style="color: green;">Características do veículo:</h3>
+                    <p><strong>Fabricante:</strong> ${vehicle.fabricante}</p>
+                    <p><strong>Nome:</strong> ${vehicle.nome}</p>
+                    <p><strong>Potência do motor:</strong> ${vehicle.potencia}</p>
+                    <p><strong>Garantia:</strong> ${vehicle.garantia}</p>
+                    <p><strong>Consumo (cidade):</strong> ${vehicle.consumo}</p>
+                    <a href="index.html" class="btn">Mudar perfil</a>
+                </div>
+            `;
+            return vehicleDiv;
+        };
+
+        const showVehicle = (index, container) => {
+            container.querySelectorAll('.vehicle').forEach((vehicle, i) => {
+                vehicle.style.display = i === index ? 'flex' : 'none';
+            });
+        };
+
+        const startSlideshow = (container, vehicles) => {
+            let currentIndex = 0;
+            showVehicle(currentIndex, container);
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % vehicles.length;
+                showVehicle(currentIndex, container);
+            }, 2000);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userName = localStorage.getItem('nome') || 'Visitante';
+            const userPassatempo = localStorage.getItem('passatempo');
+            document.getElementById('welcome-text').textContent = `${userName}, veja as opções para o seu perfil:`;
+
+            const slideshowContainer = document.getElementById('slideshow-container');
+            const selectedVehicles = vehiclesData[userPassatempo === 'shopping' ? 'shopping' : 'natureza'];
+
+            selectedVehicles.forEach(vehicle => {
+                slideshowContainer.appendChild(createVehicleElement(vehicle));
+            });
+
+            startSlideshow(slideshowContainer, selectedVehicles);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Qual o seu perfil?</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+            }
+
+            h1 {
+                color: black;
+                font-size: 2em;
+                font-weight: bold;
+            }
+
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                text-align: left;
+            }
+
+            .obs {
+                color: red;
+                font-size: 0.9em;
+                margin-bottom: 20px;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            label {
+                font-weight: bold;
+                font-size: 1em;
+                display: block;
+                margin-bottom: 5px;
+                color: rgb(5, 5, 88);
+            }
+
+            input, select {
+                width: 100%;
+                padding: 5px;
+                font-size: 1em;
+                border: 1px solid black;
+                border-radius: 3px;
+            }
+
+            .row {
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .row > div {
+                flex: 1;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+                font-weight: bold;
+                color: white;
+                background-color: black;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #333;
+            }
+
+            button:active {
+                transform: scale(0.98);
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.querySelector('form');
+                const nome = document.getElementById('nome');
+                const idade = document.getElementById('idade');
+                const passatempo = document.getElementById('passatempo');
+                const submitButton = document.querySelector('button[type="submit"]');
+                const resetButton = document.querySelector('button[type="reset"]');
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    if (!validateForm()) {
+                        return;
+                    }
+                    localStorage.setItem('nome', nome.value);
+                    localStorage.setItem('passatempo', passatempo.value);
+                    window.location.href = 'aguarde.html';
+                });
+
+                resetButton.addEventListener('click', function() {
+                    form.reset();
+                });
+
+                submitButton.addEventListener('mouseover', function() {
+                    submitButton.style.transform = 'scale(0.9)';
+                });
+
+                submitButton.addEventListener('mouseout', function() {
+                    submitButton.style.transform = 'scale(1)';
+                });
+
+                function validateForm() {
+                    if (nome.value.trim() === '') {
+                        alert('Nome não pode estar em branco ou conter apenas espaços em branco.');
+                        nome.focus();
+                        return false;
+                    }
+
+                    const idadeValue = parseInt(idade.value, 10);
+                    if (isNaN(idadeValue) || idadeValue < 1 || idadeValue > 130) {
+                        alert('Idade inválida. Deve ser entre 1 e 130.');
+                        idade.focus();
+                        return false;
+                    }
+
+                    if (passatempo.value === '') {
+                        alert('Por favor, selecione um passatempo.');
+                        passatempo.focus();
+                        return false;
+                    }
+
+                    return true;
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 style="text-align: center;">Qual o seu perfil?</h1>
+            <p class="obs" style="text-align: center;">OBS: Todas as informações são de preenchimento obrigatório</p>
+            <form id="profileForm">
+                <label for="nome">Nome<samp style="color: red;">*</samp></label>
+                <input type="text" id="nome" name="nome" value="" required>
+            
+                <div class="row">
+                    <div>
+                        <label for="idade">Idade<samp style="color: red;">*</samp></label>
+                        <input type="number" id="idade" name="idade" value="" required>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div>
+                        <label for="passatempo">Qual o seu passatempo predileto?<samp style="color: red;">*</samp></label>
+                        <select id="passatempo" name="passatempo" required>
+                            <option value="" disabled selected hidden></option>
+                            <option value="Selecione">(a) Selecione</option>
+                            <option value="shopping">(b) Passear no shopping (fazer compras, etc)</option>
+                            <option value="natureza">(c) Curtir a natureza (cachoeira, etc)</option>
+                        </select>
+                    </div>
+                </div>
+            
+                <div class="buttons">
+                    <button type="submit">Ver opções de carro</button>
+                    <button type="reset">Limpar</button>
+                </div>
+            </form>
+        </div>
+    </body>
+    </html>
