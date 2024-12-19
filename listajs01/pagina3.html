@@ -8,17 +8,25 @@
     <link rel="stylesheet" href="css/estilos.css">
     <script>
 
-        let nome = prompt("Qual é o seu nome completo?");
-        let idade = prompt("Qual é a sua idade?");
+       // Captura o nome completo do usuário e armazena na variável 'nome'
+let nome = prompt("Qual é o seu nome completo?");
 
-        // Verificar se a idade é maior ou igual a 18
-        if (idade >= 18) {
-            alert(`${nome}, você já POSSUI idade para tirar carteira`);
-        } else {
-            // Calcular quantos anos faltam para completar 18
-            let anosFaltando = 18 - idade;
-            alert(`${nome}, você ainda NÃO POSSUI idade para tirar carteira, ainda falta ${anosFaltando} ano(s)`);
-        }
+// Captura a idade do usuário e armazena na variável 'idade'
+let idade = prompt("Qual é a sua idade?");
+
+// Verifica se o usuário tem 18 anos ou mais
+if (idade >= 18) {
+    // Exibe uma mensagem informando que o usuário já tem idade para tirar a carteira
+    alert(`${nome}, você já POSSUI idade para tirar carteira`);
+} else {
+    // Calcula quantos anos faltam para o usuário completar 18 anos
+    let anosFaltando = 18 - idade;
+
+    // Exibe uma mensagem informando que o usuário ainda não tem idade para tirar a carteira 
+    // e quantos anos faltam para isso
+    alert(`${nome}, você ainda NÃO POSSUI idade para tirar carteira, ainda falta ${anosFaltando} ano(s)`);
+}
+
     </script>
 </head>
 
