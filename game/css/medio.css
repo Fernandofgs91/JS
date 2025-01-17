@@ -1,0 +1,202 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #1B2A41;
+    /* Azul escuro */
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #2C3E6C, #1B2A41);
+    /* Gradiente azul */
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #FFDA4D;
+    /* Amarelo suave */
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    /* Sombras sutis para dar ênfase */
+}
+
+.description {
+    color: #F1C40F;
+    margin-bottom: 20px;
+}
+
+.question {
+    font-size: 1.5em;
+    margin: 20px 0;
+    color: #F1C40F;
+    /* Amarelo mais brilhante */
+    font-weight: 500;
+    /* Peso de fonte para destaque */
+}
+
+.answers button {
+    font-size: 1.2em;
+    padding: 12px 24px;
+    margin: 12px;
+    background-color: #2980B9;
+    /* Azul médio */
+    color: #fff;
+    border: 2px solid #FFDA4D;
+    /* Amarelo suave */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.answers button:hover {
+    background-color: #FFDA4D;
+    /* Amarelo suave */
+    color: #2980B9;
+    /* Azul médio */
+    transform: translateY(-3px);
+    /* Efeito de elevação */
+}
+
+.answers button:active {
+    background-color: #F1C40F;
+    /* Amarelo brilhante */
+    border-color: #F1C40F;
+    transform: translateY(1px);
+    /* Efeito de clique */
+}
+
+/* Estilo para o botão de ajuda */
+#helpButton {
+    font-size: 1.5em;
+    padding: 12px 25px;
+    margin-top: 20px;
+    background-color: #FF8C00;
+    /* Amarelo alaranjado */
+    color: #fff;
+    border: 2px solid #FF8C00;
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#helpButton:hover {
+    background-color: #FF6A00;
+    /* Amarelo mais forte */
+    border-color: #FF6A00;
+    transform: translateY(-3px);
+    /* Efeito de elevação */
+}
+
+#helpButton:active {
+    background-color: #E67E22;
+    /* Amarelo mais intenso */
+    border-color: #E67E22;
+    transform: translateY(1px);
+    /* Efeito de clique */
+}
+
+.feedback {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #E74C3C;
+    /* Vermelho suave para feedback de erro */
+    font-weight: 700;
+    /* Negrito para destacar */
+}
+
+.timer {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #F39C12;
+    /* Amarelo dourado para o timer */
+    font-weight: 500;
+    /* Peso de fonte para destaque */
+    display: none;
+    /* Inicialmente escondido */
+}
+
+.counters {
+    margin-top: 20px;
+    display: none;
+    /* Inicialmente escondido */
+}
+
+.counter {
+    font-size: 1.2em;
+    margin: 5px;
+}
+
+/* Estilo do botão "Iniciar Jogo" */
+#startButton {
+    font-size: 1.5em;
+    padding: 15px 30px;
+    background-color: #2980B9;
+    /* Azul médio */
+    color: #fff;
+    border: 2px solid #FFDA4D;
+    /* Amarelo suave */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#scoreCounter,
+#errorCounter {
+    display: none;
+    /* Inicialmente escondido */
+}
+
+#startButton:hover {
+    background-color: #FFDA4D;
+    /* Amarelo suave */
+    color: #2980B9;
+    /* Azul médio */
+    transform: translateY(-3px);
+    /* Efeito de elevação */
+}
+
+#startButton:active {
+    background-color: #F1C40F;
+    /* Amarelo brilhante */
+    border-color: #F1C40F;
+    transform: translateY(1px);
+    /* Efeito de clique */
+}
+
+#gameOverMessage {
+    display: none;
+    font-size: 4em;
+    color: red;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+    position: fixed;
+    /* Usando fixed para garantir que a mensagem esteja fixada na tela */
+    top: 50%;
+    /* Centraliza verticalmente */
+    left: 50%;
+    /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%);
+    /* Ajuste preciso para centralizar */
+    z-index: 9999;
+    /* Garante que a mensagem fique acima de outros elementos */
+}
+
+#victoryMessage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: green;
+    font-size: 4em;
+    font-weight: bold;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}

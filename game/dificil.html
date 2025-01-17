@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modalidade Difícil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dificil.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="playerName">Modalidade Difícil</h1>
+        <div class="description">
+            <p>Você tem dois minutos para resolver operações matemáticas desafiadoras e avançar para o próximo nível.</p>
+            <p>O jogo acaba quando você cometer 3 erros ou acertar 10 questões.</p>
+            <p>Você pode pular a questão até 3 vezes.</p>
+        </div>
+        <button id="startButton">Iniciar</button>
+        <br>
+        <div class="timer" id="timerDisplay">Tempo restante: 2:00</div>
+        <div class="question" id="question"></div>
+        <div class="input-answer">
+            <input type="number" step="1" id="userAnswer" placeholder="Sua resposta">
+            <button onclick="submitAnswer()">ENTER</button>
+            <button id="skipButton" style="display: none;">Pular Questão</button>
+
+        </div>
+        <div class="feedback" id="feedback"></div>
+        <div class="counters">
+            <div id="scoreCounter" class="counter">Acertos: 0</div>
+            <div id="errorCounter" class="counter">Erros: 0</div>
+        </div>
+
+    </div>
+
+   <script src="Js/dificil.js"></script>
+</body>
+
+</html>

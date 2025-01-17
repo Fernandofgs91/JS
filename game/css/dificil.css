@@ -1,0 +1,140 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #121212;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #1f1f1f, #121212);
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #ff4500;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(255, 69, 0, 0.7);
+}
+
+.description {
+    color: #ff6347;
+    margin-bottom: 20px;
+}
+
+.question {
+    font-size: 1.8em;
+    margin: 20px 0;
+    color: #ff6347;
+    font-weight: bold;
+    display: none;
+}
+
+.input-answer {
+    margin: 20px;
+    display: none;
+}
+
+.input-answer input {
+    font-size: 1.2em;
+    padding: 12px;
+    border: 2px solid #ff4500;
+    border-radius: 8px;
+    background-color: #1f1f1f;
+    color: #fff;
+    width: 220px;
+    text-align: center;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.input-answer input:focus {
+    border-color: #ff6347;
+    outline: none;
+    background-color: #2e2e2e;
+}
+
+.input-answer button {
+    font-size: 1.2em;
+    padding: 12px;
+    margin: 10px;
+    background-color: #121212;
+    color: #fff;
+    border: 2px solid #ff4500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.input-answer button:hover {
+    background-color: #ff4500;
+    color: #121212;
+    transform: translateY(-2px);
+}
+
+.feedback {
+    margin-top: 25px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.controls button {
+    font-size: 1.2em;
+    padding: 12px 24px;
+    margin: 20px;
+    background-color: #1f1f1f;
+    color: #fff;
+    border: 2px solid #ff6347;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #ff6347;
+    color: #121212;
+    transform: translateY(-3px);
+}
+
+.timer {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #ff6347;
+    font-weight: bold;
+    display: none;
+}
+
+.counters {
+    margin-top: 20px;
+    display: none;
+}
+
+.counter {
+    font-size: 1.2em;
+    margin: 5px;
+}
+
+#startButton {
+    font-size: 1.5em;
+    padding: 15px 30px;
+    background-color: #ff6347;
+    color: #fff;
+    border: 2px solid #ff4500;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 20px;
+    transition: all 0.3s ease;
+}
+
+#startButton:hover {
+    background-color: #ff4500;
+    color: #fff;
+    transform: translateY(-3px);
+}

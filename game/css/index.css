@@ -1,0 +1,139 @@
+
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #0D1B2A;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('numbers-background.png') no-repeat center center / cover;
+            opacity: 0.1;
+            z-index: -1;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100% 100%;
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #1E2A47, #0D1B2A);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #4E92D6;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #AAB8C2;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            font-size: 1.2em;
+            padding: 12px;
+            width: 300px;
+            border: 2px solid #4E92D6;
+            border-radius: 5px;
+            background-color: #1B2A41;
+            color: #fff;
+            transition: all 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus {
+            border-color: #00A9E1;
+            background-color: #1F355B;
+            outline: none;
+        }
+
+        .difficulty-buttons button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #1F355B;
+            color: #fff;
+            border: 2px solid #4E92D6;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .difficulty-buttons button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 169, 225, 0.5);
+            background-color: #4E92D6;
+            color: #0D1B2A;
+        }
+
+        .difficulty-buttons button:active {
+            background-color: #00A9E1;
+            border-color: #00A9E1;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            input[type="text"] {
+                width: 80%;
+            }
+
+            .difficulty-buttons button {
+                width: 80%;
+                font-size: 1em;
+            }
+        }
+    

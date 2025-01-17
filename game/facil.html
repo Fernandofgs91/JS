@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modalidade Fácil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/facil.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Modalidade Fácil</h1>
+        <p>Resolva operações matemáticas simples antes que o tempo de 2 minutos acabe.</p>
+        <p>Você tem 3 vidas e o objetivo é acertar 10 questões. Boa sorte!</p>
+        <p id="playerName"></p> <!-- Aqui vai o nome do jogador -->
+        <button class="button" id="startButton">Iniciar Jogo</button>
+        <button class="button" id="helpButton" style="display:none;">Usar Ajuda</button>
+
+        <div class="game-area" id="gameArea">
+            <div class="counters">
+                <span id="scoreCounter">Acertos: 0</span>
+                <span id="errorCounter">Erros: 0</span>
+            </div>
+            <div class="timer" id="timerDisplay">Tempo restante: 120s</div>
+            <div class="question" id="question"></div>
+            <div class="answers" id="answers"></div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    </div>
+    <div id="gameOverMessage">Game Over</div>
+    <div id="victoryMessage">Você Ganhou!</div>
+
+    <script src="Js/facil.js"></script>
+
+</body>
+
+</html>

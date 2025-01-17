@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/resultados.css">
+
+    
+</head>
+<body>
+    <h1>Resultados das Partidas</h1>
+
+    <h2>Fácil</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Jogador</th>
+                <th>Modalidade</th>
+                <th>Acertos</th>
+            </tr>
+        </thead>
+        <tbody id="easyTable">
+            <!-- Resultados preenchidos dinamicamente -->
+        </tbody>
+    </table>
+
+    <h2>Médio</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Jogador</th>
+                <th>Modalidade</th>
+                <th>Acertos</th>
+            </tr>
+        </thead>
+        <tbody id="mediumTable">
+            <!-- Resultados preenchidos dinamicamente -->
+        </tbody>
+    </table>
+
+    <h2>Difícil</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Jogador</th>
+                <th>Modalidade</th>
+                <th>Acertos</th>
+            </tr>
+        </thead>
+        <tbody id="hardTable">
+            <!-- Resultados preenchidos dinamicamente -->
+        </tbody>
+    </table>
+
+    <button class="button" onclick="goToMenu()">Voltar ao Menu</button>
+    <button class="button" onclick="clearResults()">Limpar Resultados</button>
+
+    <script src="Js/resultados.js"></script>
+</body>
+</html>
