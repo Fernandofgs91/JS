@@ -1,5 +1,5 @@
 // ==========================
-// Configurações e Inicialização
+// Variáveis Globais
 // ==========================
 let timeRemaining = 120;
 let errors = 0;
@@ -15,6 +15,9 @@ const victorySound = new Audio('Audio/vitoria.mp3');
 
 const playerName = localStorage.getItem('currentPlayer') || 'Jogador';
 
+// ==========================
+// Inicialização da Interface
+// ==========================
 window.onload = () => {
     initUI();
 };
@@ -43,12 +46,15 @@ function resetGameVariables() {
     helpUsed = false;
 }
 
+// ==========================
+// Temporizador
+// ==========================
 function startTimer() {
     const timerDisplay = document.getElementById('timerDisplay');
     timerInterval = setInterval(() => {
         if (timeRemaining <= 0) {
             clearInterval(timerInterval);
-            endGame("Game Over");
+            showEndGameMessage("Game Over", gameOverSound);
         } else {
             timeRemaining--;
             timerDisplay.innerText = `Tempo restante: ${timeRemaining}s`;
@@ -56,6 +62,9 @@ function startTimer() {
     }, 1000);
 }
 
+// ==========================
+// Geração de Perguntas
+// ==========================
 function generateQuestion() {
     const { num1, num2, operator, isAddition } = generateRandomQuestion();
     correctAnswer = isAddition ? num1 + num2 : num1 - num2;
@@ -77,13 +86,11 @@ function generateAnswerButtons() {
     answers.innerHTML = '';
     const answerSet = new Set([correctAnswer]);
 
-    // Gera 6 respostas únicas, incluindo a correta
     while (answerSet.size < 6) {
         const randomAnswer = correctAnswer + Math.floor(Math.random() * 41 - 20);
         answerSet.add(randomAnswer);
     }
 
-    // Cria botões para as respostas
     Array.from(answerSet)
         .sort(() => Math.random() - 0.5)
         .forEach(answer => {
@@ -122,6 +129,7 @@ function displayFeedback(isCorrect) {
 function handleCorrectAnswer() {
     score++;
     correctSound.play();
+    updateUI();
     if (score >= 10) {
         showEndGameMessage('Parabéns!', victorySound);
     }
@@ -130,9 +138,21 @@ function handleCorrectAnswer() {
 function handleIncorrectAnswer() {
     errors++;
     wrongSound.play();
-    if (errors >= 3) {
-        showEndGameMessage('Game Over', gameOverSound);
-    }
+    updateUI();
+
+    // Mostrar a resposta correta antes de gerar uma nova questão
+    const feedback = document.getElementById('feedback');
+    feedback.innerText = `Errado! A resposta correta era ${correctAnswer}.`;
+    feedback.style.color = 'red';
+
+    // Esperar 2 segundos antes de gerar a próxima questão
+    setTimeout(() => {
+        if (errors >= 3) {
+            showEndGameMessage('Game Over', gameOverSound);
+        } else {
+            generateQuestion();
+        }
+    }, 2000);
 }
 
 // ==========================
@@ -150,7 +170,6 @@ function hideIncorrectAnswers() {
     const answerButtons = document.querySelectorAll('#answers button');
     const incorrectAnswers = Array.from(answerButtons).filter(button => parseInt(button.innerText) !== correctAnswer);
 
-    // Oculta 4 respostas incorretas
     incorrectAnswers.slice(0, 4).forEach(button => (button.style.display = 'none'));
 }
 
@@ -159,7 +178,7 @@ function hideIncorrectAnswers() {
 // ==========================
 function showEndGameMessage(message, sound) {
     document.body.innerHTML = '';
-    document.body.style.backgroundColor = '1B2A41';
+    document.body.style.backgroundColor = '#1B2A41';
     document.body.style.display = 'flex';
     document.body.style.justifyContent = 'center';
     document.body.style.alignItems = 'center';
@@ -192,7 +211,7 @@ function saveGameResult() {
         jogador: playerName,
         modalidade: difficulty,
         acertos: score,
-        tempoRestante: timeRemaining
+        tempoRestante: timeRemaining,
     });
     localStorage.setItem('results', JSON.stringify(results));
 }
