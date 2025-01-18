@@ -10,7 +10,7 @@ class Game {
         this.GAME_DURATION = 120; // 2 minutos em segundos
         this.MAX_ERRORS = 3;
         this.MAX_SCORE = 10;
-        this.MAX_SKIPS = 3; // Número máximo de pulos permitidos
+        this.MAX_SKIPS = 3;
 
         this.gameState = {
             timer: this.GAME_DURATION,
@@ -63,19 +63,9 @@ class Game {
 
     startTimer() {
         this.gameState.timerInterval = setInterval(() => {
-            if (this.gameState.timer <= 0) {
-                clearInterval(this.gameState.timerInterval);
-                if (this.gameState.score < this.MAX_SCORE) {
-                    this.showGameOver();
-                } else {
-                    this.showCongratulations();
-                }
+            if (this.gameState.timer <= 0 || this.gameState.errors >= this.MAX_ERRORS || this.gameState.score >= this.MAX_SCORE) {
+                this.endGameCondition();
                 return;
-            }
-
-            if (this.gameState.errors >= this.MAX_ERRORS || this.gameState.score >= this.MAX_SCORE) {
-                clearInterval(this.gameState.timerInterval);
-                this.endGame();
             }
 
             this.gameState.timer--;
@@ -90,14 +80,14 @@ class Game {
     }
 
     generateQuestion() {
-        const num1 = Math.floor(Math.random() * 300) + 1; // Garante que num1 não seja zero
-        const num2 = Math.floor(Math.random() * 300) + 1; // Garante que num2 não seja zero
+        const num1 = Math.floor(Math.random() * 300) + 1;
+        const num2 = Math.floor(Math.random() * 300) + 1;
         const operations = ['+', '-', '*', '/'];
         const operation = operations[Math.floor(Math.random() * operations.length)];
 
         if (operation === '/') {
-            this.gameState.correctAnswer = Math.floor(num1 / num2); // Divisão inteira
-            const dividend = this.gameState.correctAnswer * num2; // Ajusta o dividendo para garantir divisão exata
+            this.gameState.correctAnswer = Math.floor(num1 / num2);
+            const dividend = this.gameState.correctAnswer * num2;
             this.elements.questionDisplay.innerText = `Quanto é ${dividend} ÷ ${num2}?`;
         } else {
             this.gameState.correctAnswer = this.calculateAnswer(num1, num2, operation);
@@ -110,7 +100,7 @@ class Game {
             case '+': return num1 + num2;
             case '-': return num1 - num2;
             case '*': return num1 * num2;
-            case '/': return Math.floor(num1 / num2); // Divisão inteira
+            case '/': return Math.floor(num1 / num2);
             default: return 0;
         }
     }
@@ -123,40 +113,45 @@ class Game {
 
     submitAnswer() {
         const userAnswer = parseInt(this.elements.userAnswerInput.value);
-
-        if (userAnswer === this.gameState.correctAnswer) {
+        const isCorrect = userAnswer === this.gameState.correctAnswer;
+        this.handleAnswerFeedback(isCorrect);
+        this.elements.userAnswerInput.value = '';
+        if (isCorrect) {
             this.handleCorrectAnswer();
         } else {
             this.handleWrongAnswer();
         }
+    }
 
-        this.elements.userAnswerInput.value = '';
+    handleAnswerFeedback(isCorrect) {
+        if (isCorrect) {
+            this.elements.feedback.innerText = 'Correto!';
+            this.elements.feedback.style.color = '#00ff00';
+            this.sounds.correct.play();
+        } else {
+            this.elements.feedback.innerText = `Errado! A resposta correta era ${this.gameState.correctAnswer}.`;
+            this.elements.feedback.style.color = 'red';
+            this.sounds.wrong.play();
+        }
     }
 
     handleCorrectAnswer() {
-        this.elements.feedback.innerText = 'Correto!';
-        this.elements.feedback.style.color = '#00ff00';
-        this.sounds.correct.play();
         this.gameState.score++;
         this.elements.scoreCounter.innerText = `Acertos: ${this.gameState.score}`;
         if (this.gameState.score >= this.MAX_SCORE) {
-            this.showCongratulations();
+            this.showEndMessage('Você ganhou!', '#00ff00', this.sounds.victory);
         } else {
             this.generateQuestion();
         }
     }
 
     handleWrongAnswer() {
-        this.elements.feedback.innerText = `Errado! A resposta correta era ${this.gameState.correctAnswer}.`;
-        this.elements.feedback.style.color = 'red';
-        this.sounds.wrong.play();
         this.gameState.errors++;
         this.elements.errorCounter.innerText = `Erros: ${this.gameState.errors}`;
-
-        setTimeout(() => this.generateQuestion(), 2000); // Mostra o resultado por 2 segundos antes de gerar nova questão
-
         if (this.gameState.errors >= this.MAX_ERRORS) {
-            setTimeout(() => this.showGameOver(), 2000);
+            this.showEndMessage('Game Over!', 'red', this.sounds.gameOver);
+        } else {
+            setTimeout(() => this.generateQuestion(), 2000);
         }
     }
 
@@ -172,21 +167,12 @@ class Game {
         }
     }
 
-    async showGameOver() {
-        this.updateGameStateDisplay('Game Over!', 'red');
-        this.sounds.gameOver.play();
-        await this.waitForSoundEnd(this.sounds.gameOver);
-        this.endGame();
-    }
-
-    async showCongratulations() {
-        this.updateGameStateDisplay('Você ganhou!', '#00ff00');
-        this.sounds.victory.play();
-        await this.waitForSoundEnd(this.sounds.victory);
-
-        await this.delay(3000);
-
-        this.endGame();
+    async showEndMessage(message, color, sound) {
+        clearInterval(this.gameState.timerInterval);
+        this.updateGameStateDisplay(message, color);
+        sound.play();
+        await this.waitForSoundEnd(sound);
+        this.saveResultsAndRedirect();
     }
 
     updateGameStateDisplay(message, color) {
@@ -199,41 +185,22 @@ class Game {
         });
     }
 
-    async endGame() {
-        try {
-            const results = JSON.parse(localStorage.getItem('results')) || [];
-            results.push({
-                jogador: this.gameState.playerName,
-                modalidade: 'Difícil',
-                acertos: this.gameState.score,
-                erros: this.gameState.errors,
-                tempoRestante: this.gameState.timer,
-                pulos: this.MAX_SKIPS - this.gameState.skips,
-            });
-
-            localStorage.setItem('results', JSON.stringify(results));
-
-            const soundToPlay = 
-                this.gameState.errors >= this.MAX_ERRORS || this.gameState.score < this.MAX_SCORE
-                    ? this.sounds.gameOver
-                    : this.sounds.victory;
-
-            await this.waitForSoundEnd(soundToPlay);
-            await this.delay(2000);
-
+    saveResultsAndRedirect() {
+        const results = JSON.parse(localStorage.getItem('results')) || [];
+        results.push({
+            jogador: this.gameState.playerName,
+            modalidade: 'Difícil',
+            acertos: this.gameState.score,
+            erros: this.gameState.errors,
+            tempoRestante: this.gameState.timer,
+            pulos: this.MAX_SKIPS - this.gameState.skips,
+        });
+        localStorage.setItem('results', JSON.stringify(results));
+        setTimeout(() => {
             window.location.href = 'resultados.html';
-        } catch (error) {
-            console.error('Erro ao finalizar o jogo:', error);
-            alert('Ocorreu um erro ao finalizar o jogo. Por favor, tente novamente.');
-        }
-    }
-
-    delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+        }, 2000);
     }
 }
 
-// ==========================
 // Inicialização do Jogo
-// ==========================
 const game = new Game();
