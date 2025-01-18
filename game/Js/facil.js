@@ -121,7 +121,7 @@ function checkAnswer(isCorrect) {
 // ==========================
 function displayFeedback(isCorrect) {
     const feedback = document.getElementById('feedback');
-    feedback.innerText = isCorrect ? 'Acertou!' : 'Errou!';
+    feedback.innerText = isCorrect ? 'Acertou!' : `Errou! A resposta correta era ${correctAnswer}.`;
     feedback.style.color = isCorrect ? '#00ff00' : 'red';
 }
 
@@ -150,7 +150,7 @@ function handleWrongAnswer() {
     if (errors >= 3) {
         showGameOverMessage();
     } else {
-        generateQuestion();
+        setTimeout(generateQuestion, 2000); // Gera nova questão após 2 segundos
     }
 }
 
