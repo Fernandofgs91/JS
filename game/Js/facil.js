@@ -116,7 +116,7 @@ function displayFeedback(isCorrect) {
 function handleCorrectAnswer() {
     score++;
     correctSound.play();
-    if (score >= 1) {
+    if (score >= 10) {
         showVictoryMessage();
     } else {
         generateQuestion();
