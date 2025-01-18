@@ -22,10 +22,9 @@
         <div class="timer" id="timerDisplay">Tempo restante: 2:00</div>
         <div class="question" id="question"></div>
         <div class="input-answer">
-            <input type="number" step="1" id="userAnswer" placeholder="Sua resposta">
-            <button onclick="submitAnswer()">ENTER</button>
+            <input type="tel" inputmode="numeric" id="userAnswer" placeholder="Sua resposta" onkeydown="handleAnswerSubmission(event)">
+            <button id="submitButton" onclick="submitAnswer()">ENTER</button>
             <button id="skipButton" style="display: none;">Pular Questão</button>
-
         </div>
         <div class="feedback" id="feedback"></div>
         <div class="counters">
