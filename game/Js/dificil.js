@@ -90,13 +90,19 @@ class Game {
     }
 
     generateQuestion() {
-        const num1 = Math.floor(Math.random() * 300);
-        const num2 = Math.floor(Math.random() * 300);
-        const operations = ['+', '-', '*'];
+        const num1 = Math.floor(Math.random() * 300) + 1; // Garante que num1 não seja zero
+        const num2 = Math.floor(Math.random() * 300) + 1; // Garante que num2 não seja zero
+        const operations = ['+', '-', '*', '/'];
         const operation = operations[Math.floor(Math.random() * operations.length)];
 
-        this.gameState.correctAnswer = this.calculateAnswer(num1, num2, operation);
-        this.elements.questionDisplay.innerText = `Quanto é ${num1} ${operation} ${num2}?`;
+        if (operation === '/') {
+            this.gameState.correctAnswer = Math.floor(num1 / num2); // Divisão inteira
+            const dividend = this.gameState.correctAnswer * num2; // Ajusta o dividendo para garantir divisão exata
+            this.elements.questionDisplay.innerText = `Quanto é ${dividend} ÷ ${num2}?`;
+        } else {
+            this.gameState.correctAnswer = this.calculateAnswer(num1, num2, operation);
+            this.elements.questionDisplay.innerText = `Quanto é ${num1} ${operation} ${num2}?`;
+        }
     }
 
     calculateAnswer(num1, num2, operation) {
@@ -104,6 +110,7 @@ class Game {
             case '+': return num1 + num2;
             case '-': return num1 - num2;
             case '*': return num1 * num2;
+            case '/': return Math.floor(num1 / num2); // Divisão inteira
             default: return 0;
         }
     }
@@ -140,13 +147,16 @@ class Game {
     }
 
     handleWrongAnswer() {
-        this.elements.feedback.innerText = 'Errado!';
+        this.elements.feedback.innerText = `Errado! A resposta correta era ${this.gameState.correctAnswer}.`;
         this.elements.feedback.style.color = 'red';
         this.sounds.wrong.play();
         this.gameState.errors++;
         this.elements.errorCounter.innerText = `Erros: ${this.gameState.errors}`;
+
+        setTimeout(() => this.generateQuestion(), 2000); // Mostra o resultado por 2 segundos antes de gerar nova questão
+
         if (this.gameState.errors >= this.MAX_ERRORS) {
-            this.showGameOver();
+            setTimeout(() => this.showGameOver(), 2000);
         }
     }
 
