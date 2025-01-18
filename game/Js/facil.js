@@ -12,7 +12,9 @@ let correctAnswer;
 let timerInterval;
 let helpUsed = false;
 
+// ==========================
 // Inicialização da interface
+// ==========================
 window.onload = () => {
     initUI();
 };
@@ -24,7 +26,9 @@ function initUI() {
     document.getElementById('helpButton').addEventListener('click', useHelp);
 }
 
-// Atualização da interface com mensagem personalizada
+// ==========================
+// Atualização da interface
+// ==========================
 function updateGameStateDisplay(message, color) {
     const container = document.querySelector('.container');
     container.innerHTML = `
@@ -38,13 +42,14 @@ function updateGameStateDisplay(message, color) {
     }, 4000);
 }
 
-// Atualização dos contadores
 function updateCounters() {
     document.getElementById('scoreCounter').innerText = `Acertos: ${score}`;
     document.getElementById('errorCounter').innerText = `Erros: ${errors}`;
 }
 
+// ==========================
 // Início do jogo
+// ==========================
 async function startGame() {
     document.getElementById('startButton').style.display = 'none';
     document.getElementById('helpButton').style.display = 'inline-block';
@@ -53,7 +58,9 @@ async function startGame() {
     generateQuestion();
 }
 
+// ==========================
 // Temporizador
+// ==========================
 function startTimer() {
     const timerDisplay = document.getElementById('timerDisplay');
     timerInterval = setInterval(() => {
@@ -67,7 +74,9 @@ function startTimer() {
     }, 1000);
 }
 
+// ==========================
 // Geração de perguntas
+// ==========================
 function generateQuestion() {
     const num1 = Math.floor(Math.random() * 50) + 1;
     const num2 = Math.floor(Math.random() * 50) + 1;
@@ -94,7 +103,9 @@ function generateQuestion() {
         });
 }
 
+// ==========================
 // Verificação de resposta
+// ==========================
 function checkAnswer(isCorrect) {
     displayFeedback(isCorrect);
     if (isCorrect) {
@@ -105,25 +116,34 @@ function checkAnswer(isCorrect) {
     updateCounters();
 }
 
+// ==========================
 // Feedback visual
+// ==========================
 function displayFeedback(isCorrect) {
     const feedback = document.getElementById('feedback');
     feedback.innerText = isCorrect ? 'Acertou!' : 'Errou!';
     feedback.style.color = isCorrect ? '#00ff00' : 'red';
 }
 
+// ==========================
 // Resposta correta
+// ==========================
 function handleCorrectAnswer() {
     score++;
     correctSound.play();
+    updateCounters();
+
     if (score >= 10) {
+        clearInterval(timerInterval); // Interrompe o temporizador
         showVictoryMessage();
     } else {
         generateQuestion();
     }
 }
 
+// ==========================
 // Resposta errada
+// ==========================
 function handleWrongAnswer() {
     errors++;
     wrongSound.play();
@@ -134,24 +154,38 @@ function handleWrongAnswer() {
     }
 }
 
+// ==========================
 // Mensagem de vitória
+// ==========================
 function showVictoryMessage() {
     vitoriaSound.play();
     updateGameStateDisplay("Parabéns! Você venceu!", "#00ff00");
 }
 
+// ==========================
 // Mensagem de Game Over
+// ==========================
 function showGameOverMessage() {
     gameOverSound.play();
     updateGameStateDisplay("Game Over!", "red");
 }
 
+// ==========================
 // Fim do jogo
+// ==========================
 async function endGame(message) {
+    clearInterval(timerInterval); // Garante que o temporizador seja interrompido
+    if (message === "Parabéns") {
+        vitoriaSound.play();
+    } else if (message === "Game Over") {
+        gameOverSound.play();
+    }
     updateGameStateDisplay(message, message === "Parabéns" ? "#00ff00" : "red");
 }
 
+// ==========================
 // Salvar resultados
+// ==========================
 function saveGameResult() {
     const results = JSON.parse(localStorage.getItem('results')) || [];
     results.push({
@@ -164,7 +198,9 @@ function saveGameResult() {
     localStorage.setItem('results', JSON.stringify(results));
 }
 
+// ==========================
 // Ajuda
+// ==========================
 function useHelp() {
     if (!helpUsed) {
         helpUsed = true;
