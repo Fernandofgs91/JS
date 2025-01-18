@@ -32,6 +32,7 @@ class Game {
             timerDisplay: document.getElementById('timerDisplay'),
             questionDisplay: document.getElementById('question'),
             skipButton: document.getElementById('skipButton'),
+            submitButton: document.getElementById('submitButton'), // Adicionando o botão de envio
         };
 
         this.init();
@@ -42,6 +43,7 @@ class Game {
         this.elements.startButton.addEventListener('click', this.startGame.bind(this));
         this.elements.userAnswerInput.addEventListener('keypress', this.handleAnswerSubmission.bind(this));
         this.elements.skipButton.addEventListener('click', this.handleSkipQuestion.bind(this));
+        this.elements.submitButton.addEventListener('click', this.submitAnswer.bind(this)); // Configurando o clique no botão
     }
 
     startGame() {
