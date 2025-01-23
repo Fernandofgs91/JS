@@ -14,7 +14,7 @@ body {
 
 form {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     margin-bottom: 20px;
     padding: 20px;
     border: 1px solid #ddd;
@@ -30,14 +30,14 @@ form:hover {
 }
 
 label {
-    font-weight: 650;
+    font-weight: 650px;
     display: block;
     margin-bottom: 8px;
     color: #555;
 }
 
 input[type="text"] {
-    width: 100%;
+    width: 400px;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
@@ -57,7 +57,7 @@ input[type="text"]:focus {
 
 button {
     display: inline-block;
-    width: 100%;
+    width: 400px;
     padding: 10px 20px;
     background-color: #007BFF;
     color: #fff;
