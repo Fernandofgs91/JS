@@ -15,3 +15,5 @@ Lista 06: https://fernandofgs91.github.io/JS/lista6/index.html
 Lista 07: https://fernandofgs91.github.io/JS/lista7/index.html
 
 Lista 08: https://fernandofgs91.github.io/JS/simu/index.html
+
+Lista 09: https://fernandofgs91.github.io/JS/lista09/index.html
