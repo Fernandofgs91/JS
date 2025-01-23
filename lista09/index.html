@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+    <title>Validação de Dados</title>
+</head>
+<body>
+    <form>
+        <label for="txtBinario">a) Números Binários</label>
+        <input type="text" id="txtBinario" placeholder="Exemplo: 10101">
+        <button type="button" id="btnValidarBinario">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtHexadecimal">b) Números Hexadecimais</label>
+        <input type="text" id="txtHexadecimal" placeholder="Exemplo: 1A3F">
+        <button type="button" id="btnValidarHexadecimal">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtDecimal">c) Números Decimais</label>
+        <input type="text" id="txtDecimal" placeholder="Exemplo: 1234">
+        <button type="button" id="btnValidarDecimal">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtReais">d) Números Reais</label>
+        <input type="text" id="txtReais" placeholder="Exemplo: 3.14 ou 3,14">
+        <button type="button" id="btnValidarReais">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtHorario">e) Horário (hh:mm:ss)</label>
+        <input type="text" id="txtHorario" placeholder="Exemplo: 14:30:45">
+        <button type="button" id="btnValidarHorario">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtDataNascimento">f) Data de Nascimento</label>
+        <input type="text" id="txtDataNascimento" placeholder="Exemplo: 01/01/2000">
+        <button type="button" id="btnValidarDataNascimento">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtCEP">g) CEP</label>
+        <input type="text" id="txtCEP" placeholder="Exemplo: 38400-000">
+        <button type="button" id="btnValidarCEP">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtCPF">h) CPF</label>
+        <input type="text" id="txtCPF" placeholder="Exemplo: 123.456.789-09">
+        <button type="button" id="btnValidarCPF">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtCNPJ">i) CNPJ</label>
+        <input type="text" id="txtCNPJ" placeholder="Exemplo: 12.345.678/0001-99">
+        <button type="button" id="btnValidarCNPJ">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtEntreParenteses">j) Números Entre Parênteses</label>
+        <input type="text" id="txtEntreParenteses" placeholder="Exemplo: (12345)">
+        <button type="button" id="btnValidarEntreParenteses">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtEmail">k) Email</label>
+        <input type="text" id="txtEmail" placeholder="Exemplo: exemplo@dominio.com">
+        <button type="button" id="btnValidarEmail">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtEndereco">L) Endereço (IPv4)</label>
+        <input type="text" id="txtEndereco" placeholder="Exemplo: 192.168.1.1">
+        <button type="button" id="btnValidarEndereco">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtAltura">M) Altura</label>
+        <input type="text" id="txtAltura" placeholder="Exemplo: 1.75 ou 1,75">
+        <button type="button" id="btnValidarAltura">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtNomeProprio">n) Nome Próprio</label>
+        <input type="text" id="txtNomeProprio" placeholder="Exemplo: João">
+        <button type="button" id="btnValidarNomeProprio">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtTelefone">o) Telefone Internacional</label>
+        <input type="text" id="txtTelefone" placeholder="Exemplo: +55(34)91234-5678">
+        <button type="button" id="btnValidarTelefone">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtTexto">p) Texto Específico</label>
+        <input type="text" id="txtTexto" placeholder="Exemplo: IFTM campus Uberlândia">
+        <button type="button" id="btnValidarTexto">Validar</button>
+    </form>
+
+    <form>
+        <label for="txt1a100">q )Números de 1 a 100</label>
+        <input type="text" id="txt1a100" placeholder="Exemplo: 42">
+        <button type="button" id="btnValidar1a100">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtPlaca">r) Placa de Carro (Mercosul)</label>
+        <input type="text" id="txtPlaca" placeholder="Exemplo: ABC1D23">
+        <button type="button" id="btnValidarPlaca">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtVogais">s) Palavras com Vogais</label>
+        <input type="text" id="txtVogais" placeholder="Exemplo: “b”, “c”, “d”. Ex:“dado”, “caco”">
+        <button type="button" id="btnValidarVogais">Validar</button>
+    </form>
+
+    <form>
+        <label for="txtFaturamento">t) Faturamento da Empresa</label>
+        <input type="text" id="txtFaturamento" placeholder="Exemplo: R$1.500,75">
+        <button type="button" id="btnValidarFaturamento">Validar</button>
+    </form>
+    <form id="formMatriculaU">
+        <label for="txtMatriculaU">u) Número de Matrícula 1 (Formato: IFTM-xxx/xxx-yy)</label>
+        <input type="text" id="txtMatriculaU" placeholder="Exemplo: IFTM-123/456-AB">
+        <button type="button" id="btnValidarMatriculaU">Validar</button>
+    </form>
+
+    
+    <form id="formMatriculaV">
+        <label for="txtMatriculaV"> v) Número de Matrícula 2 (Formato: MT-xx.xxx-IFTM)</label>
+        <input type="text" id="txtMatriculaV" placeholder="Exemplo: MT-12.345-IFTM">
+        <button type="button" id="btnValidarMatriculaV">Validar</button>
+    </form>
+
+
+    <form id="formMatriculaW">
+        <label for="txtMatriculaW">w) Número de Matrícula 3(Formato: MT-xx.xxx-IFTM Y)</label>
+        <input type="text" id="txtMatriculaW" placeholder="Exemplo: MT-12.345-IFTM UBERLÂNDIA">
+        <button type="button" id="btnValidarMatriculaW">Validar</button>
+    </form>
+    <script src="js/script.js"></script>
+</body>
+</html>
