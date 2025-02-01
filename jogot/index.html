@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jogo educativo para testar sua rapidez ao identificar números pares.">
+    <meta name="author" content="Seu Nome">
+    <title>🎮 JOGO: É PAR?</title>
+
+    <!-- Estilos -->
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+/* RESET GERAL */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* BODY - Fundo do jogo inspirado no Mario */
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/super_mario_capa_galeria_2020.png') no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* 🎮 TOPO DO JOGO */
+.containerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, #FF0000, #CC0000);
+    color: white;
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    border-bottom: 5px solid #FFD700;
+    z-index: 1000;
+}
+
+/* SELEÇÃO DE NÍVEL */
+.nivel-container label {
+    font-size: 14px;
+}
+
+select {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #FFD700;
+    color: #000;
+    border: 3px solid #FF0000;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+select:hover {
+    transform: scale(1.05);
+}
+
+/* BOTÕES */
+button {
+    padding: 15px 30px;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 14px;
+    color: white;
+    background-color: #FF4500;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: #FFD700;
+    box-shadow: 0px 5px 15px rgba(255, 215, 0, 0.5);
+}
+
+button:disabled {
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+/* 🎵 BOTÕES COM ICONE DO MARIO */
+.btn {
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.btnPlay {
+    background-image: url('../img/play.png');
+}
+
+.btnPause {
+    background-image: url('../img/pause.png');
+}
+
+.btnRestart {
+    background-image: url('../img/restart.png');
+}
+
+.btnExit {
+    background-image: url('../img/exit.png');
+}
+
+/* 🕹️ PAINEL DO JOGO */
+.painelJogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background: url('../img/mario_game_bg.png') no-repeat center;
+    background-size: cover;
+    gap: 20px; /* Espaçamento entre os elementos */
+}
+
+/* NÚMERO SORTEADO */
+#nroSorteado {
+    font-size: 10vw;
+    font-family: 'Orbitron', sans-serif;
+    color: #FF4500;
+    text-shadow: 5px 5px 10px rgba(255, 69, 0, 0.7);
+    cursor: pointer;
+    animation: bounce 1s infinite alternate;
+}
+#btSom {
+    padding: 20px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#btSom:hover {
+    background-color: #45a049;
+}
+
+#btSom.desligado {
+    background-color: #f44336;
+}
+
+#btSom.desligado:hover {
+    background-color: #e53935;
+}
+/* Animação do número */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 🎮 RODAPÉ */
+.containerBottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(180deg, #0073e6, #1E90FF);
+    color: white;
+    padding: 15px 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 5px solid #FFD700;
+}
+
+img {
+    width: 400px;
+    transition: filter 0.3s ease;
+    /* Adiciona uma transição suave */
+}
+
+img:hover {
+    filter: brightness(1.3);
+    /* Aumenta o brilho em 50% */
+}
+
+.tempo-container {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tempo-container span {
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
+}
+
+
+footer.containerBottom {
+    background-color: #222;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 3px solid #444;
+    font-size: 1.2rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.estatistica {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 150px;
+}
+
+.estatistica p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.estatistica span {
+    color: #ffd700;
+    font-size: 1.3rem;
+}
+.fim-de-jogo-mensagem {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    gap: 20px; /* Espaçamento moderno */
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    font-weight: bold;
+    color: #FFD700; /* Amarelo Estrela */
+    text-shadow: 3px 3px 0px red, 6px 6px 0px blue;
+    animation: piscar 1s infinite alternate; /* Efeito de piscar */
+}
+
+#mensagemErro {
+    display: none; /* Inicialmente oculta */
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f7ea03;
+    border: 1px solid #ff4d4d;
+    border-radius: 5px;
+    text-align: center;
+}
+
+@keyframes piscar {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+/* 📱 RESPONSIVIDADE */
+@media screen and (max-width: 768px) {
+    .containerTop {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    select {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+
+    .btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    #nroSorteado {
+        font-size: 12vw;
+    }
+}
+
+
+    </style>
+
+    <!-- Ícones -->
+    <link rel="icon" href="img/mario-icon.png" type="image/png">
+</head>
+
+<body>
+    <!-- Cabeçalho do jogo -->
+    <header class="container containerTop">
+        <div class="nivel-container">
+            <label for="nivel">🎯 Nível:</label>
+            <select id="nivel" aria-label="Selecione o nível de dificuldade" required>
+                <option value="selecione">Selecione o nível</option>
+                <option value="facil">Fácil</option>
+                <option value="medio">Médio</option>
+                <option value="dificil">Difícil</option>
+            </select>
+        </div>
+       
+        <div class="tempo-container" aria-live="polite">
+            ⏰ <span id="min">00</span>:<span id="seg">00</span>
+        </div>
+
+        <div class="botoes-container">
+            <button id="btPlay" class="btn btnPlay" type="button" aria-label="Iniciar jogo"></button>
+            <button id="btPause" class="btn btnPause" type="button" aria-label="Pausar jogo" disabled></button>
+            <button id="btRestart" class="btn btnRestart" type="button" aria-label="Parar jogo" disabled></button>
+            <button id="btExit" class="btn btnExit" type="button" aria-label="Sair do jogo"></button>
+        </div>
+    </header>
+
+    <!-- Painel principal do jogo -->
+    <main class="painelJogo">
+        <div id="mensagemErro" style="display: none; color: red; font-size: bold; margin-top: 10px; font-size: 10px;">
+           <p> <span style="font-size: 15px;">📢</span> Para iniciar, selecione o nível de dificuldade!</p>
+        </div>
+
+        <p id="nroSorteado" tabindex="0" aria-live="assertive" aria-label="Número sorteado">
+            <img src="img/mario.png" alt=""><br>
+        </p>
+       
+        <div id="fimDeJogoMensagem" class="fim-de-jogo-mensagem">
+            <P>Fim de jogo!</P>
+        </div>
+        
+    </main>
+
+    <!-- Rodapé do jogo -->
+    <footer class="container containerBottom">
+        <div class="estatistica">
+            <p>✅ Acertos: <span id="acertos">0</span> (<span id="percentualAcertos">0%</span>)</p>
+        </div>
+        <div class="estatistica">
+            <p>❌ Erros: <span id="erros">0</span></p>
+        </div>
+        <div class="estatistica">
+            <p>🔢 Total de Pares Sorteados: <span id="qtidadePares">0</span></p>
+        </div>
+        <button id="btSom">🔊 Ligar Som</button>
+    </footer>
+
+    <!-- Scripts -->
+   <script>
+
+class Jogo {
+    constructor() {
+        this.iniciouJogo = false;
+        this.idCronTempo = null;
+        this.idCronNros = null;
+        this.nivelDificuldade = null;
+        this.minutos = 0;
+        this.segundos = 0;
+        this.niveis = {
+            default: { min: 0, seg: 0, tempo: 0 },
+            facil: { min: 1, seg: 30, tempo: 1200 },
+            medio: { min: 1, seg: 15, tempo: 700 },
+            dificil: { min: 0, seg: 30, tempo: 500 }
+        };
+        this.pontuacao = { acertos: 0, erros: 0, qtidadePares: 0, percentualAcertos: 0 };
+
+        this.init();
+    }
+
+    init() {
+        // Configura os event listeners
+        document.getElementById("nivel").addEventListener("change", () => this.mudarTempo());
+        document.getElementById("btPlay").addEventListener("click", () => this.iniciarJogo());
+        document.getElementById("btPause").addEventListener("click", () => this.pausarJogo());
+        document.getElementById("btRestart").addEventListener("click", () => this.pararJogo());
+        document.getElementById("btExit").addEventListener("click", () => this.sairJogo());
+        document.getElementById("nroSorteado").addEventListener("click", () => this.conferir());
+
+        // Inicializa os botões
+        this.habilitarBotoes(true, false, false);
+    }
+
+    atualizarInterface() {
+        // Atualiza a interface com os valores atuais da pontuação
+        document.getElementById("acertos").textContent = this.pontuacao.acertos;
+        document.getElementById("erros").textContent = this.pontuacao.erros;
+        document.getElementById("qtidadePares").textContent = this.pontuacao.qtidadePares;
+        document.getElementById("percentualAcertos").textContent = `${this.pontuacao.percentualAcertos}%`;
+    }
+
+    mudarTempo() {
+        // Altera o tempo conforme o nível selecionado
+        if (this.iniciouJogo) this.pararJogo();
+        this.tocarAudio("audio/selecao.mp3");
+        const nivel = this.niveis[document.getElementById("nivel").value] || this.niveis.default;
+        this.minutos = nivel.min;
+        this.segundos = nivel.seg;
+        this.nivelDificuldade = nivel.tempo;
+        this.atualizarPainelTempo();
+    }
+
+    atualizarPainelTempo() {
+        // Atualiza o painel de tempo
+        document.getElementById("min").textContent = this.minutos.toString().padStart(2, '0');
+        document.getElementById("seg").textContent = this.segundos.toString().padStart(2, '0');
+    }
+
+    iniciarJogo() {
+        // Inicia o jogo
+        if (document.getElementById("nivel").value === "selecione") {
+            
+          
+            return;
+        }
+        this.iniciouJogo = true;
+        this.habilitarBotoes(false, true, true);
+        this.tocarAudio("audio/start.mp3");
+        this.idCronNros = setInterval(() => this.trocarNumero(), this.nivelDificuldade);
+        this.idCronTempo = setInterval(() => this.atualizarTempo(), 1000);
+    }
+
+    trocarNumero() {
+        // Gera um número aleatório e atualiza a interface
+        const numero = Math.floor(Math.random() * 100) + 1;
+        document.getElementById("nroSorteado").textContent = numero;
+        document.getElementById("nroSorteado").style.color = "black";
+        if (numero % 2 === 0) this.pontuacao.qtidadePares++;
+        this.pontuacao.percentualAcertos = ((this.pontuacao.acertos / this.pontuacao.qtidadePares) * 100).toFixed(1) || 0;
+        this.atualizarInterface();
+    }
+
+    conferir() {
+        // Verifica se o número é par ou ímpar
+        if (!this.iniciouJogo) return;
+        const valor = parseInt(document.getElementById("nroSorteado").textContent);
+        if (valor % 2 === 0) {
+            this.tocarAudio("audio/acerto.mp3");
+            this.pontuacao.acertos++;
+            document.getElementById("nroSorteado").style.color = "green";
+        } else {
+            this.tocarAudio("audio/erro.mp3");
+            this.pontuacao.erros++;
+            document.getElementById("nroSorteado").style.color = "red";
+            document.getElementById("nroSorteado").classList.add("shakeNumber");
+            setTimeout(() => document.getElementById("nroSorteado").classList.remove("shakeNumber"), 300);
+        }
+        this.atualizarInterface();
+    }
+
+    pausarJogo() {
+        // Pausa o jogo e toca o som de pause
+        this.habilitarBotoes(true, false, true);
+        clearInterval(this.idCronNros);
+        clearInterval(this.idCronTempo);
+        this.tocarAudio("audio/pause.mp3"); // Som de pause
+    }
+
+    pararJogo() {
+        // Para o jogo, reinicia os valores e toca o som de stop
+        this.minutos = this.segundos = 0;
+        this.iniciouJogo = false;
+        document.getElementById("nivel").selectedIndex = 0;
+    
+        // Corrigido: Usar innerHTML para inserir a imagem
+        document.getElementById("nroSorteado").innerHTML = '<img src="img/mario.png" alt="">';
+    
+        this.pontuacao = { acertos: 0, erros: 0, qtidadePares: 0, percentualAcertos: 0 };
+        this.atualizarInterface();
+        this.pausarJogo();
+        this.habilitarBotoes(false, false, true);
+        this.tocarAudio("audio/stop.mp3"); // Som de stop
+        window.location.reload();
+    }
+
+    sairJogo() {
+        // Toca o som de gameover e redireciona para a página inicial
+        this.tocarAudio("audio/exit.mp3"); // Som de gameover
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 1000); // Aguarda 1 segundo para o som tocar antes de redirecionar
+    }
+
+    atualizarTempo() {
+        if (this.minutos === 0 && this.segundos === 0) {
+            clearInterval(this.idCronNros);
+            clearInterval(this.idCronTempo);
+            this.iniciouJogo = false;
+            this.tocarAudio("audio/gameover.mp3");
+            alert("Fim de jogo!");
+            
+            // Desabilitar os botões de iniciar e pausar
+            this.habilitarBotoes(false, false, true);
+            return;
+        }
+        if (this.minutos === 0 && this.segundos === 10) {
+            document.getElementById("min").style.color = "red";
+            document.getElementById("seg").style.color = "red";
+            this.tocarAudio("audio/fimtempo.mp3");
+        }
+        if (this.segundos === 0) {
+            this.minutos--;
+            this.segundos = 59;
+        } else {
+            this.segundos--;
+        }
+        this.atualizarPainelTempo();
+    }
+
+    habilitarBotoes(play, pause, stop) {
+        // Habilita ou desabilita os botões
+        document.getElementById("btPlay").disabled = !play;
+        document.getElementById("btPause").disabled = !pause;
+        document.getElementById("btRestart").disabled = !stop;
+        document.getElementById("btExit").disabled = !stop;  // Habilita "Sair" ao final do jogo
+    }
+
+    tocarAudio(src) {
+        // Reproduz um áudio
+        const audio = new Audio(src);
+        audio.play().catch(error => console.error("Erro ao reproduzir áudio:", error));
+    }
+}
+
+// Inicializa o jogo quando a página é carregada
+window.addEventListener("load", () => new Jogo());
+
+   </script>
+</body>
+
+</html>
