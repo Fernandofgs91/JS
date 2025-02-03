@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+   <link rel="stylesheet" href="css/cadastro.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cadastro</h1>
+        <img src="img/supermario.png" width="300px" alt="Logo Super Mario">
+        <form id="cadastroForm">
+            <input type="text" id="nome" placeholder="Nome de usuário">
+            <input type="password" id="senha" placeholder="Senha">
+            <input type="password" id="confirmarSenha" placeholder="Confirmar senha">
+            <button type="submit">Cadastrar</button>
+            <button type="reset">Limpar</button>
+        </form>
+        <p id="cadastroError" style="color: rgba(255, 0, 3, 0.996);"></p>
+        <p id="loginValido" style="color: rgba(52, 184, 0, 0.996);"></p>
+        <p><a href="index.html">Já tem uma conta? Faça login</a></p>
+    </div>
+
+<script src="js/cadastro.js"></script>
+</body>
+
+</html>

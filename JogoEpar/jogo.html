@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jogo educativo para testar sua rapidez ao identificar números pares.">
+    <meta name="author" content="Seu Nome">
+    <title>🎮 JOGO: É PAR?</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/jogo.css">
+    <!-- Ícones -->
+    <link rel="icon" href="img/mario-icon.png" type="image/png">
+</head>
+
+<body>
+    <!-- Cabeçalho do jogo -->
+    <header class="container containerTop">
+        <div class="nivel-container">
+            <label for="nivel">🎯 Nível:</label>
+            <select id="nivel" aria-label="Selecione o nível de dificuldade" required>
+                <option value="selecione">Selecione o nível</option>
+                <option value="facil">Fácil</option>
+                <option value="medio">Médio</option>
+                <option value="dificil">Difícil</option>
+            </select>
+        </div>
+       
+        <div class="tempo-container" aria-live="polite">
+            ⏰ <span id="min">00</span>:<span id="seg">00</span>
+        </div>
+
+        <div class="botoes-container">
+            <button id="btPlay" class="btn btnPlay" type="button" aria-label="Iniciar jogo"></button>
+            <button id="btPause" class="btn btnPause" type="button" aria-label="Pausar jogo" disabled></button>
+            <button id="btRestart" class="btn btnRestart" type="button" aria-label="Parar jogo" disabled></button>
+            <button id="btExit" class="btn btnExit" type="button" aria-label="Sair do jogo"></button>
+        </div>
+    </header>
+
+    <!-- Painel principal do jogo -->
+    <main class="painelJogo">
+        <div id="mensagemErro" style="display: none; color: red; font-size: bold; margin-top: 10px; font-size: 10px;">
+           <p> <span style="font-size: 15px;">📢</span> Para iniciar, selecione o nível de dificuldade!</p>
+        </div>
+        
+        <div id="nroSorteado" tabindex="0" aria-live="assertive" aria-label="Número sorteado">
+            <img src="img/mario.png" alt="Personagem Mario">
+        </div>
+       
+       
+        <div id="fimDeJogoMensagem" class="fim-de-jogo-mensagem">
+            <P>Game Over!</P>
+        </div>
+        
+    </main>
+
+    <!-- Rodapé do jogo -->
+    <footer class="container containerBottom">
+        <div class="fot">
+            <p>✅ Acertos: <span id="acertos">0</span> (<span id="percentualAcertos">0%</span>)</p>
+        </div>
+        <div class="fot">
+            <p>❌ Erros: <span id="erros">0</span></p>
+        </div>
+        <div class="fot">
+            <p>🔢 Total de Pares Sorteados: <span id="qtidadePares">0</span></p>
+        </div>
+        <button id="btSom">🔊 Som Ligado. </button>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="js/jogo.js"></script>
+</body>
+
+</html>
