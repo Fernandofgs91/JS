@@ -264,27 +264,48 @@ img:hover {
 
 /* 📱 RESPONSIVIDADE */
 @media screen and (max-width: 768px) {
-    .containerTop {
+    .containerTop, 
+    .containerBottom {
         flex-direction: column;
-        padding: 10px;
+        padding: 7.5px; /* Reduzido pela metade */
+        font-size: 0.8em; /* Reduzindo o tamanho da fonte */
     }
 
-    select {
-        font-size: 12px;
-        padding: 8px;
+    .containerBottom {
+        flex-direction: column-reverse;
+        gap: 5px;
+    }
+
+    select, 
+    .tempo-container, 
+    button, 
+    #btSom, 
+    .fot, 
+    .fot p, 
+    .fot span {
+        font-size: 10px; /* Reduzido */
+        padding: 5px; 
     }
 
     button {
-        font-size: 12px;
-        padding: 10px 20px;
+        padding: 7.5px 15px; /* Reduzido */
     }
 
     .btn {
-        width: 50px;
-        height: 50px;
+        width: 30px; /* Reduzido */
+        height: 30px; /* Reduzido */
+    }
+
+    #btSom {
+        font-size: 8px; /* Ajuste menor */
+    }
+
+    .tempo-container span {
+        font-family: 'Courier New', Courier, monospace;
+        letter-spacing: 2px;
     }
 
     #nroSorteado {
-        font-size: 12vw;
+        font-size: 10vw; /* Ajuste proporcional */
     }
 }
