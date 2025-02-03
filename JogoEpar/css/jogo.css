@@ -122,8 +122,8 @@ button:active {
 #nroSorteado {
     font-size: 10vw;
     font-family: 'Orbitron', sans-serif;
-    color: #FF4500;
-    text-shadow: 5px 5px 10px rgba(255, 69, 0, 0.7);
+    color: rgba(255, 0, 3, 0.996);
+    text-shadow: 5px 5px 10px rgba(255, 203, 0, 0.996);
     cursor: pointer;
     animation: bounce 1s infinite alternate;
     }
@@ -261,7 +261,6 @@ img:hover {
     border-radius: 5px;
     text-align: center;
 }
-
 /* 📱 RESPONSIVIDADE */
 @media screen and (max-width: 768px) {
     .containerTop, 
@@ -269,6 +268,7 @@ img:hover {
         flex-direction: column;
         padding: 7.5px; /* Reduzido pela metade */
         font-size: 0.8em; /* Reduzindo o tamanho da fonte */
+        gap: 5px;
     }
 
     .containerBottom {
@@ -297,7 +297,7 @@ img:hover {
     }
 
     #btSom {
-        font-size: 8px; /* Ajuste menor */
+        font-size: 10px; /* Ajuste menor */
     }
 
     .tempo-container span {
