@@ -18,4 +18,4 @@ Lista 08: https://fernandofgs91.github.io/JS/simu/index.html
 
 Lista 09: https://fernandofgs91.github.io/JS/lista09/index.html
 
-Lista 10 e 10: https://fernandofgs91.github.io/JS/JogoEpar/index.html
+Lista 10 e 11: https://fernandofgs91.github.io/JS/JogoEpar/index.html
