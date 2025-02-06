@@ -171,7 +171,7 @@ class Jogo {
         this.somFundo.pause();
         setTimeout(() => {
             window.location.href = "index.html";
-        }, 2000);
+        }, 3000);
     }
 
     atualizarTempo() {
