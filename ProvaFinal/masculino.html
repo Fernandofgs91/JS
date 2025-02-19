@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personagens</title>
+</head>
+<body>
+
+    <div>
+        <button onclick="trocarImagem('img/mario.gif')">Mario</button>
+        <button onclick="trocarImagem('img/luigi.gif')">Luigi</button>
+    </div>
+
+    <img id="personagem" src="img/mario.gif" alt="Mario" onclick="incrementarContador()">
+
+    <p id="contadorMario">Contador do Mario: 0</p>
+    <p id="contadorLuigi">Contador do Luigi: 0</p>
+
+    <script>
+        let contadorMario = 0;
+        let contadorLuigi = 0;
+
+        function trocarImagem(novaImagem) {
+            document.getElementById('personagem').src = novaImagem;
+        }
+
+        function incrementarContador() {
+            const personagemImg = document.getElementById('personagem').src;
+
+            if (personagemImg.endsWith('mario.gif')) {
+                contadorMario++;
+                atualizarContador('contadorMario', contadorMario, 'Contador do Mario: ');
+            } else if (personagemImg.endsWith('luigi.gif')) {
+                contadorLuigi++;
+                atualizarContador('contadorLuigi', contadorLuigi, 'Contador do Luigi: ');
+            }
+        }
+
+        function atualizarContador(id, valor, texto) {
+            document.getElementById(id).textContent = `${texto} ${valor}`;
+        }
+    </script>
+
+</body>
+</html>
